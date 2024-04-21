@@ -1,7 +1,7 @@
 'use client';
 import React, {useEffect, useRef, useState} from 'react';
 import SyntaxHighlighter from "react-syntax-highlighter/dist/cjs/prism";
-import {Transition} from "@headlessui/react";
+import {AnimatePresence, motion} from "framer-motion";
 
 interface Element {
     tag: string;
@@ -190,19 +190,21 @@ function Typing() {
 
     return (
         <div>
-            <Transition show={typing}>
-                <Transition.Child
-                    leave="transition-opacity duration-2000"
-                    leaveFrom="opacity-100"
-                    leaveTo="opacity-0"
+            <AnimatePresence>
+                {typing && <motion.div
+                    key={"my_unique_key"}
+                    exit={{opacity: 0}}
+                    initial={{opacity: 0}}
+                    animate={{opacity: 0.35}}
                     className="absolute top-0 left-0 z-10 opacity-35 bg-white w-screen h-screen overflow-hidden"
                 >
                     <SyntaxHighlighter customStyle={{background: 'transparent'}}>{(typed)}</SyntaxHighlighter>
-                </Transition.Child>
-            </Transition>
+                </motion.div>}
+            </AnimatePresence>
             <div className="absolute top-0 left-0 w-screen h-screen z-0" ref={herodiv}></div>
         </div>
-    );
+    )
+        ;
 }
 
 async function timeout(ms: number) {
