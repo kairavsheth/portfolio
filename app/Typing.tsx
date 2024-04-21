@@ -196,7 +196,7 @@ function Typing() {
                     exit={{opacity: 0}}
                     initial={{opacity: 0}}
                     animate={{opacity: 0.35}}
-                    className="absolute top-0 left-0 z-10 opacity-35 bg-white w-screen h-screen overflow-hidden"
+                    className="absolute top-0 left-0 z-10 opacity-35 bg-white w-screen h-dvh overflow-hidden"
                 >
                     <SyntaxHighlighter customStyle={{background: 'transparent'}}>{(typed)}</SyntaxHighlighter>
                 </motion.div>}
